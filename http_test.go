@@ -1,14 +1,25 @@
 package httputils
 
 import (
-	"log"
 	"testing"
+
+	"net/http"
+
+	. "github.com/smartystreets/goconvey/convey"
 )
 
 func TestGetHttpPool(t *testing.T) {
-	log.Println("this is a test")
+	Convey("get a http pool", t, func() {
+		hpool := GetHttpPool(100, 1000)
+		So(hpool, ShouldNotBeNil)
+	})
 }
 
 func TestHttpConPool_Request(t *testing.T) {
-	log.Println("this is another test")
+	hpool := GetHttpPool(100, 100)
+	resp, err := hpool.Request("http://www.baidu.com", http.MethodGet, "", map[string]string{})
+	Convey("test http get request", t, func() {
+		So(resp, ShouldNotBeNil)
+		So(err, ShouldBeNil)
+	})
 }

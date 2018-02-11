@@ -12,14 +12,16 @@ type HttpConPool struct {
 }
 
 // Get a http pool for http client
-func GetHttpPool(max_conn int, duration int64) {
-	Hpool := new(HttpConPool)
-	Hpool.Conn = &http.Client{
+func GetHttpPool(max_conn int, duration int64) *HttpConPool {
+	hpool := new(HttpConPool)
+	hpool.Conn = &http.Client{
 		Transport: &http.Transport{
 			MaxIdleConnsPerHost: max_conn,
 		},
 		Timeout: time.Duration(duration) * time.Millisecond,
 	}
+
+	return hpool
 }
 
 // send a http request of post or get
