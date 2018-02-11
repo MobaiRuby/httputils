@@ -17,8 +17,10 @@ func TestGetHttpPool(t *testing.T) {
 
 func TestHttpConPool_Request(t *testing.T) {
 	hpool := GetHttpPool(100, 100)
-	_, err := hpool.Request("http://www.baidu.com", http.MethodGet, "", map[string]string{})
+	resp, err := hpool.Request("http://www.baidu.com", http.MethodGet, "", map[string]string{})
 	Convey("test http get request", t, func() {
-		So(err, ShouldBeNil)
+		if err != nil {
+			So(resp, ShouldBeNil)
+		}
 	})
 }
