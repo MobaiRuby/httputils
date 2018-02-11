@@ -1,0 +1,7 @@
+test:
+  pre:
+    - go get github.com/mattn/goveralls
+  override:
+    - go test -v -cover -race -coverprofile=./coverage.out
+  post:
+    - /home/ubuntu/.go_workspace/bin/goveralls -coverprofile=./coverage.out -service=circle-ci -repotoken=RzQjF56PMFDX7kEAVq5Oh89Om8jp7Nvoc
