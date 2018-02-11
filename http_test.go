@@ -10,7 +10,7 @@ import (
 
 func TestGetHttpPool(t *testing.T) {
 	Convey("get a http pool", t, func() {
-		hpool := GetHttpPool(100, 1000)
+		hpool := GetHttpPool(100, 5000)
 		So(hpool, ShouldNotBeNil)
 	})
 }
